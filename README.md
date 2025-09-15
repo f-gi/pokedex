@@ -16,6 +16,7 @@ A interface consome dados da [PokéAPI](https://pokeapi.co/) e permite **listar,
 
 ## Estrutura do Projeto
 
+```text
 src/
 ├── api/ # Comunicação com API (axios + endpoints)
 ├── components/ # Componentes reutilizáveis (Card, Tags, Stats etc.)
@@ -23,6 +24,7 @@ src/
 ├── store/ # Redux (slices + store)
 ├── types/ # Definições de tipos TypeScript
 ├── constants/ # Mapas de cores e constantes globais
+```
 
 ## Como Rodar o Projeto
 
