@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Alert, Typography, Button, Skeleton } from "antd";
-import { getPokemonByName } from "../api/pokemonApi";
-import PokemonTypes from "../components/PokemonTypes";
-import PokemonStats from "../components/PokemonStats";
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Empty, Typography, Button, Skeleton } from 'antd';
+import { getPokemonByName } from '../api/pokemonApi';
+import PokemonTypes from '../components/PokemonTypes';
+import PokemonStats from '../components/PokemonStats';
 
 const { Title } = Typography;
 
@@ -21,7 +21,7 @@ const Details = () => {
         setPokemon(data);
         setError(null);
       } catch {
-        setError("Pokémon não encontrado.");
+        setError('Pokémon não encontrado.');
         setPokemon(null);
       } finally {
         setLoading(false);
@@ -32,7 +32,7 @@ const Details = () => {
 
   if (loading) {
     return (
-      <div style={{ maxWidth: 600, margin: "2rem auto" }}>
+      <div style={{ maxWidth: 600, margin: '2rem auto' }}>
         <Skeleton active avatar paragraph={{ rows: 8 }} />
       </div>
     );
@@ -40,19 +40,25 @@ const Details = () => {
 
   if (error) {
     return (
-      <Alert
-        message={error}
-        type="error"
-        showIcon
-        style={{ marginTop: "2rem", maxWidth: 500, marginInline: "auto" }}
-      />
+      <div style={{ maxWidth: 500, margin: '2rem auto', textAlign: 'center' }}>
+        <Link to="/">
+          <Button type="default" style={{ marginTop: '1rem' }}>
+            ← Voltar
+          </Button>
+        </Link>
+        <Empty
+          image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+          imageStyle={{ height: 80 }}
+          description="Nenhum Pokémon encontrado"
+        />
+      </div>
     );
   }
 
   return (
-    <div style={{ padding: "1rem" }}>
+    <div style={{ padding: '1rem' }}>
       <Link to="/">
-        <Button type="default" style={{ marginBottom: "1rem" }}>
+        <Button type="default" style={{ marginBottom: '1rem' }}>
           ← Voltar
         </Button>
       </Link>
@@ -60,23 +66,22 @@ const Details = () => {
       <div
         style={{
           maxWidth: 600,
-          margin: "0 auto",
-          padding: "2rem",
-          borderRadius: "12px",
-          background: "#fff",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          textAlign: "center",
+          margin: '0 auto',
+          padding: '2rem',
+          borderRadius: '12px',
+          background: '#fff',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          textAlign: 'center',
         }}
       >
         <img
           alt={pokemon.name}
           src={pokemon.sprites.front_default}
-          style={{ height: 200, objectFit: "contain" }}
+          style={{ height: 200, objectFit: 'contain' }}
         />
 
-        <Title level={2} style={{ textTransform: "capitalize" }}>
-          {pokemon.name}{" "}
-          <span style={{ fontSize: "1rem", color: "#888" }}>#{pokemon.id}</span>
+        <Title level={2} style={{ textTransform: 'capitalize' }}>
+          {pokemon.name} <span style={{ fontSize: '1rem', color: '#888' }}>#{pokemon.id}</span>
         </Title>
 
         <PokemonTypes types={pokemon.types.map((t: any) => t.type.name)} />
@@ -89,7 +94,7 @@ const Details = () => {
         </p>
 
         <Title level={4}>Habilidades</Title>
-        <ul style={{ listStyle: "none", padding: 0 }}>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
           {pokemon.abilities.map((a: any) => (
             <li key={a.ability.name}>{a.ability.name}</li>
           ))}

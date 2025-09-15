@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Pokédex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação desenvolvida em **React + TypeScript**, com foco em boas práticas de arquitetura de front-end, componentização e consumo de API.  
+A interface consome dados da [PokéAPI](https://pokeapi.co/) e permite **listar, buscar e visualizar detalhes de Pokémons**.
 
-## Available Scripts
+## Tecnologias e Ferramentas
 
-In the project directory, you can run:
+- **React 19** com **TypeScript**
+- **Redux Toolkit** para gerenciamento de estado global
+- **React Router DOM v7** para navegação
+- **Ant Design** para componentes de UI
+- **Axios** para requisições HTTP
+- **Jest + Testing Library** para testes
+- **Prettier + ESLint** para padronização de código
+- **PokéAPI** como fonte de dados
 
-### `npm start`
+## Estrutura do Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+src/
+├── api/ # Comunicação com API (axios + endpoints)
+├── components/ # Componentes reutilizáveis (Card, Tags, Stats etc.)
+├── pages/ # Páginas principais (Home e Details)
+├── store/ # Redux Toolkit (slices + store)
+├── types/ # Definições de tipos TypeScript
+├── constants/ # Mapas de cores e constantes globais
+└── tests/ # Testes unitários e de integração
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Decisões de Arquitetura
 
-### `npm test`
+- **Redux Toolkit** para organizar e centralizar fluxos de dados.  
+- **Ant Design** para acelerar desenvolvimento de UI.  
+- **Separação em camadas**:  
+  - `api` → comunicação com PokéAPI  
+  - `store` → gerenciamento de estado  
+  - `components` → UI desacoplada  
+  - `pages` → telas principais  
+- **Skeletons** no lugar de spinners para melhor UX.  
+- **Mapeamento de cores** dos tipos de Pokémon em `constants/`.  
+- **Testes** iniciados com Jest + RTL (Home e Details).  
+  > ⚠️ Alguns testes ainda precisam de ajustes por dependências externas (AntD e React Router).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Como Rodar o Projeto
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Pré-requisitos
+- Node.js 18+
+- npm ou yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Instalação
+```bash
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm start
+Build de produção
+bash
 
-### `npm run eject`
+npm run build
+Testes
+bash
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+npm test
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Funcionalidades
+Home
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Lista de Pokémons com paginação
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Busca por nome (com fallback para lista inicial)
 
-## Learn More
+Skeletons durante carregamento
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Detalhes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Informações completas (imagem, tipos, habilidades, peso, altura, stats)
+
+Barras visuais para atributos
+
+Tratamento de erro (Pokémon inexistente)
